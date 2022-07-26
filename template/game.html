@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MPG prediction usecase</title>
+</head>
+     <script type="text/javascript"> 
+
+        function preventBack() { 
+
+            window.history.forward();  
+
+        } 
+
+          
+
+        setTimeout("preventBack()", 0); 
+
+          
+
+        window.onunload = function () { null }; 
+
+    </script>
+
+<body style="background-color:powderblue;">
+ <!--<img src="{% static 'end.png' %}" alt="hi">-->    
+ <center>
+    <h2>Welcome to matchstick game</h2>
+   
+    
+    <h4>Your oponent is me and <br> HI! I'm Bhargab :)</h4>
+   </center>
+    <marquee scrollamount="7" behavior="alternate"> 
+    <h2 style="color:Red">IF U BEAT ME WILL GET INR 200 directly</h2>
+    </marquee>
+     
+    <center>
+    
+    <h2>Rules : maximum matchsticks you can pick is 4 and minimum 1</h2>
+    <h2>You have initially 21 matchsticks</h2>
+    <h2>Whoever picks the last matchstick will loose the game :) </h2>
+    <h3>ALL THE BEST </h3>
+    
+    </center>
+    
+    <br><br>
+    {% if second_time %}
+    
+    <h2>after you picked {{user_pick}} sticks left is {{after_user}}</h2>
+    <h2>then I picked {{comp_pick}} match stick and finally </h2>
+    <h1 style="color:Red">match stick left is {{after_comp}}</h1>
+    
+    {% endif %}
+    
+    
+    
+    {% if win %}
+    <form method="POST" action="/matchstick" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Enter no. of matchstick u want to pick</h2>
+        <input type="number" name="pick">
+        <input type="submit" name="submit data" value="PICK">
+    </form>
+    {% endif %}
+    
+    
+    {% if lost %}
+    <h2>SORRY ONLY 1 stick was left so YOU LOST the MATCH</h2>
+     <form method="POST" action="/" enctype="multipart/form-data">
+         {% csrf_token %}
+         <input type="submit" name="submit data" value="BACK TO HOME">
+     </form>
+    {% endif %}
+    
+</body>
+</html>
+

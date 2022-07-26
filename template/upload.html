@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Upload</title>
+    </head>
+    <!--
+     <script type="text/javascript"> 
+
+        function preventBack() { 
+
+            window.history.forward();  
+
+        } 
+
+          
+
+        setTimeout("preventBack()", 0); 
+
+          
+
+        window.onunload = function () { null }; 
+
+    </script>
+    -->
+    <body style="background-color:rgb(80,110,0)">
+        <style>
+        table{
+            height:30%;
+            width:60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th, td {
+            border:1px solid black;
+            height:10%;
+            width:10%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        </style>
+        <h1>Upload any .csv file with no blank data</h1>
+
+        <br>
+        
+        <form method="POST" action="/submit" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="myFile"><br>
+            <input type="submit" name="submit">
+        </form>
+    
+    </body>
+</html>
